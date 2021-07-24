@@ -34,32 +34,38 @@ const API_KEY = '980aef4f6602bffaf56ce8d4b0805479';
 //     this.keyword = newKeyword;
 //   }
 // }
+// https://api.themoviedb.org/3/genre/movie/list?api_key=980aef4f6602bffaf56ce8d4b0805479&page=2
 
 function fetchMovieByKeyword(keyword) {
-  return fetch(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${keyword}`).then(r =>
-    r.json().then(q => {
-      return q.results, console.log(q.results);
-    }),
+  return fetch(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${keyword}`).then(response =>
+    response
+      .json()
+      .then(query => console.log(query))
+      .catch(error => console.log(error)),
   );
-  // .then(console.log(results));
+  //   .then(console.log(results));
 }
 console.log(fetchMovieByKeyword('cat'));
 function fetchMovieById() {
   return fetch(`${BASE_URL}movie/496450?api_key=${API_KEY}`)
-    .then(r => r.json())
-    .then(q => {
-      return console.log(q.homepage);
-    });
+    .then(response => response.json())
+    .then(query => console.log(query))
+    .catch(error => console.log(error));
 }
 
 console.log(fetchMovieById('496450'));
 
 function fetchTrendingMovie() {
   return fetch(`${BASE_URL}trending/movie/week?api_key=${API_KEY}`)
-    .then(r => r.json())
-    .then(r => {
-      return r.results, console.log(r.results);
-    });
+    .then(response => {
+      return response.json();
+    })
+    .then(films => console.log(films))
+    .catch(error => console.log(error));
+  // .then(r => r.json())
+  // .then(r => {
+  //   return r.results, console.log(r.results);
+  // });
 }
 
 console.log(fetchTrendingMovie());
