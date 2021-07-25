@@ -1,5 +1,17 @@
-{{#each this.results}}
+{{!-- {{#each this.results}}
 <img src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="">
 <h2>{{title}} </h2>
 <h3>{{genre_ids}} | {{release_date}} </h3>
+{{/each}} --}}
+{{#each this.results}}
+<li class="gallery-item">
+    <div class="card-movie">
+        <img src="https://image.tmdb.org/t/p/w500{{poster_path}}" alt="image" />
+        <div class="description-movie">
+            <h2 class="title-movie">{{original_title}}</h2>
+            <p class="rating-movie">{{vote_average}}</p>
+            <p class="genre-movie">{{genre_ids}} | {{release_date}}</p>
+        </div>
+    </div>
+</li>
 {{/each}}
