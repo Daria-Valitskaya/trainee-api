@@ -10,7 +10,7 @@ class FilmotekaApiServise {
     this.page = 1;
   }
   fetchTrendingMovie() {
-    return fetch(`${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`)
+    return fetch(`${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${this.page}`)
       .then(response => response.json())
       .then(query => {
         this.page += 1;
@@ -18,7 +18,9 @@ class FilmotekaApiServise {
       });
   }
   fetchMovieByKeyword(keyword) {
-    return fetch(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${keyword}`)
+    return fetch(
+      `${BASE_URL}search/movie?api_key=${API_KEY}&query=${this.keyword}&page=${this.page}`,
+    )
       .then(response => response.json())
       .then(query => {
         this.page += 1;
@@ -26,7 +28,9 @@ class FilmotekaApiServise {
       });
   }
   fetchMovieById(filmId) {
-    return fetch(`${BASE_URL}movie/${filmId}?api_key=${API_KEY}`).then(response => response.json());
+    return fetch(`${BASE_URL}movie/${this.filmId}?api_key=${API_KEY}`).then(response =>
+      response.json(),
+    );
   }
 
   resetPage() {
