@@ -10,16 +10,19 @@ class FilmotekaApiServise {
     this.page = 1;
   }
   fetchTrendingMovie() {
-    return fetch(`${BASE_URL}trending/movie/week?api_key=${API_KEY}`).then(response =>
-      response.json(),
-    );
+    return fetch(`${BASE_URL}trending/movie/week?api_key=${API_KEY}&page=${page}`)
+      .then(response => response.json())
+      .then(query => {
+        this.page += 1;
+        return query;
+      });
   }
   fetchMovieByKeyword(keyword) {
     return fetch(`${BASE_URL}search/movie?api_key=${API_KEY}&query=${keyword}`)
       .then(response => response.json())
-      .then(data => {
+      .then(query => {
         this.page += 1;
-        return data;
+        return query;
       });
   }
   fetchMovieById(filmId) {
@@ -29,6 +32,7 @@ class FilmotekaApiServise {
   resetPage() {
     this.page = 1;
   }
+
   get query() {
     return this.keyword;
   }
