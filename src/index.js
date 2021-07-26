@@ -7,7 +7,7 @@ class FilmotekaApiServise {
   constructor() {
     this.page = 1;
     this.keyword = '';
-    // this.filmId = '';
+    this.filmId = '';
   }
   fetchTrendingMovie() {
     return fetch(`${BASE_URL}trending/movie/week?api_key=${API_KEY}`).then(response =>
@@ -88,14 +88,15 @@ const refs = { cardContainer: document.querySelector('.example') };
 
 const API = new FilmotekaApiServise();
 // по ключевому слову-работает
-// API.fetchMovieByKeyword('dog').then(films => {
-//   const filmCards = markup(films);
-//   refs.cardContainer.innerHTML = filmCards;
-// });
+API.fetchMovieByKeyword('dog').then(films => {
+  console.log(films);
+  const filmCards = markup(films);
+  refs.cardContainer.innerHTML = filmCards;
+});
 // популярные фильмы работают
 // API.fetchTrendingMovie().then(films => {
 //   const filmCards = markup(films);
 //   refs.cardContainer.innerHTML = filmCards;
 // });
 // по айдишнику тоже работает
-// API.fetchMovieById('496450').then(films => console.log(films));
+API.fetchMovieById('496450').then(films => console.log(films));
